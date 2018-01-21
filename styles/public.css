@@ -1,0 +1,132 @@
+* {
+	font-family: 'Trebuchet MS', 'Heiti SC', sans-serif;
+}
+
+.navbar-default {
+	position: absolute;
+	left: 0;
+	right: 0;
+	background: none;
+	z-index: 9999;
+	border: none;
+	border-radius: 0;
+}
+
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:hover,
+.navbar-default .navbar-nav>.active>a:focus {
+	background-color: transparent;
+	color: #fff;
+}
+
+.navbar-default .navbar-brand,
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+	color: #fff;
+	font-size: 24px;
+	font-family: 'Heiti SC', sans-serif;
+}
+
+.navbar .nav>li>a {
+	position: relative;
+	margin: 0 10px;
+	padding: 15px 5px;
+	color: #fff;
+	/* font-size: 16px; */
+	font-family: 'Microsoft Yahei';
+	text-shadow: 0 0 2px rgba(255, 255, 255, .3);
+	transition: color .35s;
+}
+
+.navbar .nav>li>a:hover {
+	color: #fff;
+}
+
+.navbar .nav>li>a::after {
+	content: '';
+	position: absolute;
+	left: 50%;
+	bottom: 5px;
+	width: 0;
+	height: 3px;
+	background-color: #fff;
+	opacity: 0;
+	transition: width .35s, opacity .35s;
+	transform: translateX(-50%);
+}
+
+.navbar .nav>li>a:hover::after,
+.navbar .nav>.active>a::after {
+	width: 80%;
+	opacity: 1;
+}
+
+/* Footer Begin... */
+footer {
+	padding: 25px 0;
+	background-color: #333;
+}
+
+footer p {
+	margin: 0;
+	color: #fff;
+	font-size: 125%;
+	float: left;
+}
+
+footer a {
+	position: relative;
+	width: 20px;
+	height: 20px;
+	border: 2px #ffffff solid;
+	border-radius: 50%;
+	float: right;
+	display: inline-block;
+}
+
+footer a:hover>.qrcode {
+	opacity: 1;
+	visibility: visible;
+}
+
+footer a>.qrcode {
+	position: absolute;
+	right: -15px;
+	bottom: calc(100% + 20px);
+	padding: 5px;
+	width: 150px;
+	height: 150px;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 0 0 6px rgba(0, 0, 0, .4);
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity .35s, visibility .35s;
+}
+
+footer a>.qrcode::after {
+	content: '';
+	position: absolute;
+	right: 15px;
+	top: 100%;
+	border: 8px transparent solid;
+	border-top: 10px #ffffff solid;
+}
+
+footer a>.qrcode>img {
+	width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .navbar-default {
+		background-color: #333;
+	}
+	.navbar .nav>li>a {
+		text-align: center;
+	}
+	.navbar .nav>li>a::after,
+	.navbar .nav>li>a:hover::after,
+	.navbar .nav>.active>a::after {
+		display: none;
+	}
+}

@@ -1,0 +1,65 @@
+.preview {
+    position: relative;
+    height: 200px;
+    background: url('../images/blog1.jpg') no-repeat 0 50%;
+    background-size: cover;
+}
+
+.preview::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .4);
+}
+
+.content {
+    padding: 40px 0 60px;
+}
+
+.content >.container {
+    padding: 0 75px;
+}
+
+.content .container>h1 {
+    margin-bottom: 30px;
+    color: #7092BE;
+    font-size: 48px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.content .container>p {
+    font-size: 150%;
+    line-height: 1.8;
+    text-indent: 1em;
+}
+
+.content .container>img {
+    margin: 10px 0;
+    width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .content>.container {
+        padding: 0 30px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+    .content>.container {
+        padding: 0 15px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .content .container>p,
+    .content .container>img {
+        margin-left: auto;
+        margin-right: auto;
+        width: 85%;
+        display: block;
+    }
+}

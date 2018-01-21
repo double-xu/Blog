@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+	<title>Plrabbit.</title>
+	<link rel="stylesheet" href="styles/bootstrap.css">
+	<link rel="stylesheet" href="styles/swiper.min.css">
+	<link rel="stylesheet" href="styles/public.css">
+	<link rel="stylesheet" href="styles/index.css">
+</head>
+
+<body>
+	<!-- 影响文字可读性： -->
+	<nav class="navbar navbar-default">
+		<div class="container">
+			<div class="navbar-header">
+				<button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a href="index.html" class="navbar-brand">plrabbit.</a>
+			</div>
+
+			<div class="collapse navbar-collapse" id="navigation">
+				<ul class="nav navbar-nav navbar-right">
+					<li class="active"><a href="">Home</a></li>
+					<li><a href="">Exhibition</a></li>
+					<li><a href="">Contact</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<section class="banner">
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide first">
+					<div class="caption">
+						<div class="intro">
+							<h1>印象 · 长沙</h1>
+							<h4>Impression Changsha.</h4>
+						</div>
+						<a href="">View More</a>
+					</div>
+				</div>
+				<div class="swiper-slide second">
+					<div class="caption">
+						<div class="intro">
+							<h1>Welcome!</h1>
+							<h4>Web Front-end Development</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="swiper-button-prev swiper-button-white"></div>
+			<div class="swiper-button-next swiper-button-white"></div>
+		</div>
+	</section>
+
+	<section class="preview">
+		<h1>Introduction</h1>
+		<h4>WebApp, Js plugins, jQuery...</h4>
+		<div class="container">
+			<div class="row" id="article-wrapper"></div>
+		</div>
+	</section>
+
+	<footer>
+		<div class="container">
+			<p>&copy; Copyright 2016 - 2017 plrabbit.com</p>
+			<a href="">
+				<div class="qrcode">
+					<img src="images/qrcode.png" alt="qrcode">
+				</div>
+			</a>
+		</div>
+	</footer>
+
+	<script id="articles" type="text/html">
+		{{each articles}}
+		<div class="col-xs-12 col-sm-6 col-md-4 article-one">
+			<div class="pre" style="background-image: url('images/{{$value.art_img}}');"></div>
+			<h3 class="h3">{{$value.art_title}}</h3>
+			<p class="article-main">{{$value.art_content}}</p>
+			<a href="blog.html?a={{$value.art_id}}" class="btn btn-info btn-lg">Details</a>
+		</div>
+		{{/each}}
+	</script>
+
+	<script src='scripts/jquery.js'></script>
+	<script src='scripts/bootstrap.js'></script>
+	<script src='scripts/swiper.min.js'></script>
+	<script src='scripts/jquery.dotdotdot.js'></script>
+	<script src='scripts/template.js'></script>
+	<script>
+		new Swiper('.swiper-container', {
+			direction: 'horizontal',
+			loop: true,
+			effect: 'fade',
+			pagination: '.swiper-pagination',
+			prevButton: '.swiper-button-prev',
+			nextButton: '.swiper-button-next'
+		});
+
+		$(document).ready(function () {
+			var articles;
+
+			$.get('http://plrabbit.com/home/api.php',{
+				m: 'article',
+				a: 'list'
+			}).done(function(data){
+				console.log(data);
+				articles = template('articles', data);
+				$('#article-wrapper').html(articles);
+				$('.article-main').dotdotdot();
+			});
+
+			window.onresize = function(){
+				$('#article-wrapper').html(articles);
+				$('.article-main').dotdotdot();
+			}
+		});
+	</script>
+</body>
+
+</html>
